@@ -14,6 +14,7 @@ public class ChatController {
     @MessageMapping("/sendMessage")
     @SendTo("/topic/messages")
     public ChatMessage sendMessage(ChatMessage message) {
+       // System.out.println("Reçu : " + message.getContent());
         return message;
     }
 
