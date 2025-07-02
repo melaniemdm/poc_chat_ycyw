@@ -17,7 +17,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/chat")
-                .setAllowedOrigins("*") // ou une origine précise
+                .setAllowedOrigins("http://localhost:4200") // autorise explicitement Angular
                 .withSockJS();
     }
 }
