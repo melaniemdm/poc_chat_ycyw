@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
+import { ChatMessage } from '../interface/chatMessage';
 
-export interface ChatMessage {
-  content: string;
-  sender?: string;
-  timestamp?: Date;
-}
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +11,11 @@ export class ChatService {
   private ws: WebSocket | null = null;
   private serverUrl = 'ws://localhost:8080/chat'; // ⚠️ à adapter à ton backend
 
-  connect(onMessageReceived: (msg: any) => void): void {
+  connect(onMessageReceived: (msg: ChatMessage) => void): void {
     this.ws = new WebSocket(this.serverUrl);
 
     this.ws.onmessage = (event) => {
-      const body = JSON.parse(event.data);
+      const body: ChatMessage = JSON.parse(event.data);
       onMessageReceived(body);
     };
 
@@ -29,8 +26,8 @@ export class ChatService {
 
   sendMessage(sender: string, content: string): void {
     if (this.ws?.readyState === WebSocket.OPEN) {
-      const payload = JSON.stringify({ sender, content });
-      this.ws.send(payload);
+      const payload: ChatMessage = { sender, content };
+      this.ws.send(JSON.stringify(payload));
     }
   }
 }
