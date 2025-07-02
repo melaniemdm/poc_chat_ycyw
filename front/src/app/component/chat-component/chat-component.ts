@@ -14,19 +14,32 @@ export class ChatComponent {
   messages: any[] = [];
   content: string = '';
   sender: string = 'Moi';
+  isReady = false; // Pour gérer l'état de connexion
 
   constructor(private chatService: ChatService) {}
 
   ngOnInit() {
     this.chatService.connect((msg) => {
       this.messages.push(msg);
+    }).then(() => {
+       console.log("Connexion STOMP établie !");
+      this.isReady = true;
+    }).catch(err => {
+      console.error("Connexion STOMP échouée", err);
     });
   }
 
-  send() {
-    if (this.content.trim()) {
+  send(): void {
+    if (!this.isReady) {
+      console.warn("⛔️ WebSocket non prêt, message non envoyé.");
+      return;
+    }
+
+    if (this.sender.trim() && this.content.trim()) {
       this.chatService.sendMessage(this.sender, this.content);
       this.content = '';
+    } else {
+      console.warn("⚠️ Nom d'utilisateur ou message vide.");
     }
   }
 }

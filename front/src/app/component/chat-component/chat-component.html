@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <div class="chat-container">
-    <div class="chat-messages">
-      <div *ngFor="let msg of messages">
-        <strong>{{ msg.sender }}:</strong> {{ msg.content }}
-      </div>
+  <div class="chat-header">
+    <label>
+      Nom d'utilisateur :
+      <input [(ngModel)]="sender" placeholder="Votre nom" />
+    </label>
+  </div>
+
+  <div class="chat-messages" #messageContainer>
+    <div *ngIf="messages.length === 0" class="no-messages">
+      Aucun message pour le moment.
     </div>
-  
-    <div class="chat-input">
-      <input [(ngModel)]="content" placeholder="Message..." />
-      <button (click)="send()">Envoyer</button>
+    <div *ngFor="let msg of messages" class="message">
+      <strong>{{ msg.sender }}:</strong> {{ msg.content }}
     </div>
   </div>
-  
+
+  <div class="chat-input">
+    <input [(ngModel)]="content" placeholder="Message..." (keyup.enter)="send()" />
+    <button (click)="send()">Envoyer</button>
+  </div>
+</div>
+
