@@ -7,7 +7,7 @@ import { ChatMessage } from '../../interface/chatMessage';
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [CommonModule, FormsModule], // nécessaire pour ngModel
+  imports: [CommonModule, FormsModule],
   templateUrl: './chat-component.html',
   styleUrls: ['./chat-component.scss']
 })
@@ -17,13 +17,14 @@ export class ChatComponent {
   sender: string = 'Moi';
   isReady = false; // Pour gérer l'état de connexion
 
-  constructor(private chatService: ChatService) {}
+  constructor(private chatService: ChatService) { }
 
   ngOnInit() {
+    // Connexion au serveur et écoute des nouveaux messages
     this.chatService.connect((message) => {
       this.messages.push(message);
     }).then(() => {
-       console.log("Connexion STOMP établie !");
+      console.log("Connexion STOMP établie !");
       this.isReady = true;
     }).catch(err => {
       console.error("Connexion STOMP échouée", err);
@@ -31,6 +32,7 @@ export class ChatComponent {
   }
 
   send(): void {
+    // Si la connexion n'est pas prête, on n'envoie rien
     if (!this.isReady) {
       console.warn("WebSocket non prêt, message non envoyé.");
       return;
