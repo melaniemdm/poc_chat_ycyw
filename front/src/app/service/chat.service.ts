@@ -14,8 +14,8 @@ export class ChatService {
 
   connect(onMessageReceived: (msg: ChatMessage) => void): Promise<void>  {
     return new Promise((resolve, reject) => {
-    const socket = new SockJS('http://localhost:8080/chat'); // HTTP ici (pas WS)
-    this.stompClient = Stomp.over(socket);
+      this.stompClient = Stomp.over(() => new SockJS('http://localhost:8080/chat'));
+
 
     this.stompClient.connect({}, () => {
       this.isConnected = true; 
