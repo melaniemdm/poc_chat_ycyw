@@ -20,8 +20,8 @@ export class ChatComponent {
   constructor(private chatService: ChatService) {}
 
   ngOnInit() {
-    this.chatService.connect((msg) => {
-      this.messages.push(msg);
+    this.chatService.connect((message) => {
+      this.messages.push(message);
     }).then(() => {
        console.log("Connexion STOMP établie !");
       this.isReady = true;

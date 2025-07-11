@@ -11,9 +11,10 @@ import SockJS from 'sockjs-client';
 export class ChatService {
   private stompClient: CompatClient | null = null;
   public isConnected = false; // état de connexion
+
   connect(onMessageReceived: (msg: ChatMessage) => void): Promise<void>  {
     return new Promise((resolve, reject) => {
-    const socket = new SockJS('http://localhost:8080/chat'); // 🔁 HTTP ici (pas WS)
+    const socket = new SockJS('http://localhost:8080/chat'); // HTTP ici (pas WS)
     this.stompClient = Stomp.over(socket);
 
     this.stompClient.connect({}, () => {
