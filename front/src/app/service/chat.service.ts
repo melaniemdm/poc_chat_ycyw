@@ -17,7 +17,7 @@ export class ChatService {
     return new Promise((resolve, reject) => {
       // Crée une connexion STOMP avec un WebSocket SockJS
       this.stompClient = Stomp.over(() => new SockJS('http://localhost:8080/chat'));
-
+      this.stompClient.debug = () => {}; // Supprime les logs STOMP inutiles
       // Connexion au serveur STOMP
       this.stompClient.connect({}, () => {
         this.isConnected = true;
@@ -29,7 +29,7 @@ export class ChatService {
         });
         resolve();
       }, (error: any) => {
-        console.error('Erreur WebSocket :', error);
+       // console.error('Erreur WebSocket :', error);
       });
     });
   }

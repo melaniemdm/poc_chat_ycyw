@@ -24,7 +24,7 @@ export class ChatComponent {
     this.chatService.connect((message) => {
       this.messages.push(message);
     }).then(() => {
-      console.log("Connexion STOMP établie !");
+      console.log("Connexion STOMP établie ");
       this.isReady = true;
     }).catch(err => {
       console.error("Connexion STOMP échouée", err);
