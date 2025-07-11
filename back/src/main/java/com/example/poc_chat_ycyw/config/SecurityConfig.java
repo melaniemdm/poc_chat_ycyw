@@ -18,7 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    // 🔐 Définition du filtre de sécurité HTTP
+    // Définition du filtre de sécurité HTTP
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -33,7 +33,7 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // 🔐 Définition des utilisateurs en mémoire
+    // Définition des utilisateurs en mémoire
     @Bean
     public UserDetailsService users(PasswordEncoder encoder) {
         UserDetails user1 = User.withUsername("user1")
@@ -49,7 +49,7 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(user1, user2);
     }
 
-    // 🔐 PasswordEncoder sécurisé (BCrypt)
+    //  PasswordEncoder sécurisé (BCrypt)
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
