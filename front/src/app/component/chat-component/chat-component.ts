@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ChatService } from '../../service/chat.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ChatMessage } from '../../interface/chatMessage';
 
 @Component({
   selector: 'app-chat',
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./chat-component.scss']
 })
 export class ChatComponent {
-  messages: any[] = [];
+  messages: ChatMessage[] = [];
   content: string = '';
   sender: string = 'Moi';
   isReady = false; // Pour gérer l'état de connexion
@@ -31,7 +32,7 @@ export class ChatComponent {
 
   send(): void {
     if (!this.isReady) {
-      console.warn("⛔️ WebSocket non prêt, message non envoyé.");
+      console.warn("WebSocket non prêt, message non envoyé.");
       return;
     }
 
@@ -39,7 +40,7 @@ export class ChatComponent {
       this.chatService.sendMessage(this.sender, this.content);
       this.content = '';
     } else {
-      console.warn("⚠️ Nom d'utilisateur ou message vide.");
+      console.warn("Nom d'utilisateur ou message vide.");
     }
   }
 }
