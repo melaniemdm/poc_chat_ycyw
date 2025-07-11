@@ -1,59 +1,31 @@
-# Front
+# Front YOURCAR YOUR WAY
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.4.
+his project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
 
-## Development server
+## Start the project
 
-To start a local development server, run:
+Git clone:
 
-```bash
-ng serve
-```
+> git clone https://github.com/melaniemdm/poc_chat_ycyw.git
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Go inside folder:
 
-## Code scaffolding
+> cd front
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Installation
 
-```bash
-ng generate component component-name
-```
+Install dependencies:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+> npm install
 
-```bash
-ng generate --help
-```
+Launch Front-end:
 
-## Building
+> npm run start;
 
-To build the project run:
+### Development server
 
-```bash
-ng build
-```
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Build
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
