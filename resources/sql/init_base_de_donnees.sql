@@ -1,12 +1,17 @@
+CREATE TABLE role (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  type_role VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE utilisateur (
   id  integer PRIMARY KEY AUTO_INCREMENT,
+  role_id INTEGER,
   nom VARCHAR(100),
   prenom VARCHAR(100),
   email VARCHAR(255) UNIQUE NOT NULL,
   mot_de_passe TEXT NOT NULL,
   date_naissance DATE,
-  adresse TEXT,
-  telephone VARCHAR(20)
+  FOREIGN KEY (role_id) REFERENCES role(id)
 );
 
 CREATE TABLE agence (
@@ -47,7 +52,7 @@ CREATE TABLE paiement (
   montant DECIMAL(10, 2) NOT NULL,
   statut VARCHAR(20) CHECK (statut IN ('en_attente', 'paye', 'echoue')),
   date_paiement TIMESTAMP,
-  stripe_session_id TEXT,
   FOREIGN KEY (reservation_id) REFERENCES reservation(id)
 );
+
 
