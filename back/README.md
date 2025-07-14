@@ -21,7 +21,7 @@ Backend du chat de l’application  de **YourCarYourWay**, une application inter
 Clone the project, then install the dependencies and configure the database:
 
 ```bash
-  git https://github.com/melaniemdm/poc_chat_ycyw.git
+  git clone https://github.com/melaniemdm/poc_chat_ycyw.git
 ```
 Go inside folder:
 ```bash
